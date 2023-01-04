@@ -1,4 +1,4 @@
-// Function Constructorvar 
+// Function Constructorvar
 
 /*
 var Person = function (name, yearOfBirth, job) {
@@ -162,16 +162,28 @@ var mona = Object.create(personProto, {
 
 
 
-// IIFE 'Immediately Invoked Function Expressions'
+// // IIFE 'Immediately Invoked Function Expressions'
 
-function game() {
-    var score = Math.random() * 10;
-    console.log(Math.round(score));
-    console.log(Math.random(score) >= 5);
+// function game() {
+//     var score = Math.random() * 10;
+//     console.log(Math.round(score));
+//     console.log(Math.random(score) >= 5);
+// }
+// game();
+// (function (goodLuck) {
+//     var score = Math.random() * 10;
+//     console.log(Math.round(score));
+//     console.log(Math.random((score)) >= 5 - goodLuck);
+// })(5)
+
+
+// Clousers 
+function retirement(retirementAge) {
+    var a = ' years left until retirement. '
+    return function (yearOfBirth) {
+        var age = 2023 - yearOfBirth
+        console.log(retirementAge - age) + a;
+    }
 }
-game();
-(function (goodLuck) {
-    var score = Math.random() * 10;
-    console.log(Math.round(score));
-    console.log(Math.random((score)) >= 5 - goodLuck);
-})(5)
+var retirementAge = retirement();
+retirementAge(1998);
