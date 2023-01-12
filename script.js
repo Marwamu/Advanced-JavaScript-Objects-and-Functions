@@ -181,9 +181,11 @@ var mona = Object.create(personProto, {
 function retirement(retirementAge) {
     var a = ' years left until retirement. '
     return function (yearOfBirth) {
-        var age = 2023 - yearOfBirth
-        console.log(retirementAge - age) + a;
+        var age = 2016 - yearOfBirth
+        console.log((retirementAge - age) + a);
     }
 }
-var retirementAge = retirement();
+var retirementAge = retirement(66);
 retirementAge(1998);
+retirement(66)(2001);
+retirement(66)(1990);
