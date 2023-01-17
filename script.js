@@ -170,22 +170,103 @@ var mona = Object.create(personProto, {
 //     console.log(Math.random(score) >= 5);
 // }
 // game();
-// (function (goodLuck) {
-//     var score = Math.random() * 10;
+// (function (goodLuck) {s//     var score = Math.random() * 10;
 //     console.log(Math.round(score));
 //     console.log(Math.random((score)) >= 5 - goodLuck);
 // })(5)
 
 
 // Clousers 
-function retirement(retirementAge) {
-    var a = ' years left until retirement. '
-    return function (yearOfBirth) {
-        var age = 2016 - yearOfBirth
-        console.log((retirementAge - age) + a);
+// function retirement(retirementAge) {
+//     var a = ' years left until retirement. '
+//     return function (yearOfBirth) {
+//         var age = 2016 - yearOfBirth
+//         console.log((retirementAge - age) + a);
+//     }
+// }
+// var retirementAge = retirement(66);
+// retirementAge(1998);
+// retirement(66)(2001);
+// retirement(66)(1990);
+
+
+// var retirementGermany = retirement(65)
+// var retirementIceLand = retirement(67)
+
+// retirementGermany(1990)
+// retirementIceLand(1990)
+
+
+
+// function interviewQuestion(job) {
+//     if (job === 'designer') {
+//         return function (name) {
+//             console.log(name + ', can you explain what is UX design is?')
+//         }
+//     } else if (job === 'teacher') {
+//         return function (name) {
+//             console.log('What subject do you teach ' + name + '?');
+//         }
+//     }
+//     else {
+//         return function (name) {
+//             console.log('Hello  ' + name + ', what do you do?');
+//         }
+//     }
+// }
+
+// function interviewQuestion(job) {
+//     return function (name) {
+//         if (job === 'designer') {
+//             console.log(name + ', can you explain what is UX design is?')
+//         }
+//         else if (job === 'teacher') {
+//             console.log('What subject do you teach ' + name + '?');
+//         }
+//         else {
+//             console.log('Hello  ' + name + ', what do you do?');
+//         }
+//     }
+// }
+// interviewQuestion('designer')('Ahmed')
+// var jobTeacher = interviewQuestion('teacher')
+// jobTeacher('Adel')
+
+
+
+
+// Bind, Call and apply
+var john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentation: function (style, timeOfDay) {
+        if (style === 'formal') {
+            console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+        }
+        else if (style === 'friendly') {
+            console.log('Hey! What\'s up? I\'m ' + this.name + ' , I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+        }
     }
 }
-var retirementAge = retirement(66);
-retirementAge(1998);
-retirement(66)(2001);
-retirement(66)(1990);
+var moon = {
+    name: 'Mona',
+    age: 24,
+    job: 'Developer',
+}
+var ruu = {
+    name: 'Marwa',
+    age: 23,
+    job: 'designer',
+}
+
+john.presentation('formal', 'morning');
+john.presentation.call(moon, 'friendly', 'afternoon')
+john.presentation.apply(ruu, ['friendly', 'Sunday'])
+
+var moonFormal = john.presentation.bind(moon, 'formal');
+moonFormal('morning');
+moonFormal('night');
+var ruuFriendly = john.presentation.bind(ruu, 'friendly');
+ruuFriendly('morning');
+ruuFriendly('night');
