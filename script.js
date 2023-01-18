@@ -295,9 +295,7 @@ var mona = Object.create(personProto, {
 // console.log(fullJapan);
 
 // challenge question
-// var question ={
 
-// }
 var points = 0;
 function Question(ques, answers, corretAnswer) {
     this.question = ques
