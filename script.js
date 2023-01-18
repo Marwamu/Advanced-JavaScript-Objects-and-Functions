@@ -90,7 +90,7 @@ var mona = Object.create(personProto, {
 // console.log(obj.city);
 // console.log(obj.name);
 
-// // Passing Functions as arguments 
+// // Passing Functions as arguments
 
 // var years = [1990, 1965, 1937, 2005, 1998];
 // function arrayCalc(arr, fn) {
@@ -176,7 +176,7 @@ var mona = Object.create(personProto, {
 // })(5)
 
 
-// Clousers 
+// Clousers
 // function retirement(retirementAge) {
 //     var a = ' years left until retirement. '
 //     return function (yearOfBirth) {
@@ -236,37 +236,118 @@ var mona = Object.create(personProto, {
 
 
 // Bind, Call and apply
-var john = {
-    name: 'John',
-    age: 26,
-    job: 'teacher',
-    presentation: function (style, timeOfDay) {
-        if (style === 'formal') {
-            console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
-        }
-        else if (style === 'friendly') {
-            console.log('Hey! What\'s up? I\'m ' + this.name + ' , I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
-        }
+// var john = {
+//     name: 'John',
+//     age: 26,
+//     job: 'teacher',
+//     presentation: function (style, timeOfDay) {
+//         if (style === 'formal') {
+//             console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+//         }
+//         else if (style === 'friendly') {
+//             console.log('Hey! What\'s up? I\'m ' + this.name + ' , I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+//         }
+//     }
+// }
+// var moon = {
+//     name: 'Mona',
+//     age: 24,
+//     job: 'Developer',
+// }
+// var ruu = {
+//     name: 'Marwa',
+//     age: 23,
+//     job: 'designer',
+// }
+
+// john.presentation('formal', 'morning');
+// john.presentation.call(moon, 'friendly', 'afternoon')
+// john.presentation.apply(ruu, ['friendly', 'Sunday'])
+
+// var moonFormal = john.presentation.bind(moon, 'formal');
+// moonFormal('morning');
+// moonFormal('night');
+// var ruuFriendly = john.presentation.bind(ruu, 'friendly');
+// ruuFriendly('morning');
+// ruuFriendly('night');
+
+
+// var years = [1990, 1965, 1937, 2005, 1998];
+
+// function arrayCalc(arr, fn) {
+//     var arrRes = [];
+//     for (var i = 0; i < arr.length; i++) {
+
+//         arrRes.push(fn(arr[i]))
+//     }
+//     return arrRes;
+// }
+// function calculateAge(yearOfBirth) {
+
+//     return 2016 - yearOfBirth;
+// }
+// function isFullAge(limit, age) {
+//     return age >= limit;
+// }
+// var ages = arrayCalc(years, calculateAge);
+// var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+// console.log(ages);
+// console.log(fullJapan);
+
+// challenge question
+// var question ={
+
+// }
+var points = 0;
+function Question(ques, answers, corretAnswer) {
+    this.question = ques
+    this.answers = answers
+    this.corretAnswer = corretAnswer
+}
+var question1 = new Question('What is your name ?', ['Marwa', 'Mona'], 'Mona')
+var question2 = new Question('How old are you ?', [25, 24], 24)
+var question3 = new Question('Do you know Yousief ?', [0, 1], 0)
+var arrQuestions = [question1, question2, question3]
+console.log(question1, question2, question3);
+
+function displayQuestion(arr) {
+    min = Math.ceil(0);
+    max = Math.floor(3);
+    var index = Math.floor(Math.random() * (max - min) + min);
+    var question = arr[index]
+    console.log(question.question);
+    console.log('1- ' + question.answers[0]);
+    console.log('2- ' + question.answers[1]);
+    return question;
+}
+function startGame() {
+    var selectedQues = displayQuestion(arrQuestions)
+    let sign = prompt(selectedQues.question);
+    if (sign == selectedQues.corretAnswer) {
+        console.log('Correct Answer!');
+        points += 1
     }
+    else if (sign == 'exit') {
+        console.log('You score ' + points);
+        return;
+    }
+    else {
+        console.log('Wrong !!!!!');
+    }
+    startGame()
 }
-var moon = {
-    name: 'Mona',
-    age: 24,
-    job: 'Developer',
-}
-var ruu = {
-    name: 'Marwa',
-    age: 23,
-    job: 'designer',
-}
+startGame();
+// while (true) {
 
-john.presentation('formal', 'morning');
-john.presentation.call(moon, 'friendly', 'afternoon')
-john.presentation.apply(ruu, ['friendly', 'Sunday'])
-
-var moonFormal = john.presentation.bind(moon, 'formal');
-moonFormal('morning');
-moonFormal('night');
-var ruuFriendly = john.presentation.bind(ruu, 'friendly');
-ruuFriendly('morning');
-ruuFriendly('night');
+//     var selectedQues = displayQuestion(arrQuestions)
+//     let sign = prompt(selectedQues.question);
+//     if (sign == selectedQues.corretAnswer) {
+//         console.log('Correct Answer!');
+//     }
+//     else if (sign == 'exit') {
+//         break;
+//     }
+//     else {
+//         console.log('Wrong !!!!!');
+//     }
+// }
